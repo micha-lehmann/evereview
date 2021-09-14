@@ -1,31 +1,40 @@
 package com.micha.evereview
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.micha.evereview.databinding.ReviewsFragmentBinding
 
 class ReviewsFragment : Fragment() {
-
     companion object {
         fun newInstance() = ReviewsFragment()
     }
 
-    private val viewModel by activityViewModels<ReviewsViewModel>()
+    private val layout by lazy {
+        ReviewsFragmentBinding.inflate(layoutInflater)
+    }
+
+    private val model by activityViewModels<ReviewsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.reviews_fragment, container, false)
+    ): View {
+        return layout.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // TODO: Use the ViewModel
+
+        layout.reviews.layoutManager = LinearLayoutManager(context)
+        model.reviews.observe(this) { reviews ->
+            layout.reviews.adapter = ReviewsAdapter(reviews)
+        }
+        model.loadReviews()
     }
 }

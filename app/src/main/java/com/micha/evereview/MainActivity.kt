@@ -2,12 +2,15 @@ package com.micha.evereview
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.micha.evereview.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private val layout by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
+
+    private val model by viewModels<ReviewsViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
