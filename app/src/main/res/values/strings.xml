@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Evereview</string>
+    <string name="category_movies">Movies</string>
+    <string name="category_series">Series</string>
+    <string name="category_music">Music</string>
+    <string name="category_books">Books</string>
+    <plurals name="movie">
+        <item quantity="one">%d Movie</item>
+        <item quantity="other">%d Movies</item>
+    </plurals>
+    <string name="series">%d Series</string>
+    <plurals name="music">
+        <item quantity="one">%d Piece of Music</item>
+        <item quantity="other">%d Pieces of Music</item>
+    </plurals>
+    <plurals name="books">
+        <item quantity="one">%d Book</item>
+        <item quantity="other">%d Books</item>
+    </plurals>
+    <string name="info_rating">Rating</string>
+    <string name="info_duration">Duration</string>
+    <string name="info_year">Year</string>
+    <string name="info_rewatches">Rewatches</string>
+</resources>
