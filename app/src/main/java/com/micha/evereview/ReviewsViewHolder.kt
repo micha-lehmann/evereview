@@ -9,8 +9,8 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.RecyclerView
 import com.micha.evereview.databinding.InfoElementBinding
 import com.micha.evereview.databinding.ReviewCardBinding
-import com.micha.evereview.reviewitems.Movie
-import com.micha.evereview.reviewitems.ReviewItem
+import com.micha.evereview.models.Movie
+import com.micha.evereview.models.ReviewItem
 
 const val MAX_RATING = 10
 
@@ -21,10 +21,11 @@ class ReviewsViewHolder(
         view.root.context
     }
 
-    private val infos = listOf(view.info1, view.info2, view.info3)
+    private val infos = listOf(view.info1, view.info2, view.info3, view.info4, view.info5)
 
     fun fill(review: Review<out ReviewItem>) {
         view.title.text = review.item.title
+        view.note.text = review.note
 
         // TODO: Setting icons is stupid because they can be null.
 

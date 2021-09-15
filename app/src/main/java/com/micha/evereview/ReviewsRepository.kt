@@ -1,8 +1,8 @@
 package com.micha.evereview
 
-import com.micha.evereview.reviewitems.Movie
-import com.micha.evereview.reviewitems.ReviewItem
-import com.micha.evereview.reviewitems.Series
+import com.micha.evereview.models.Movie
+import com.micha.evereview.models.ReviewItem
+import com.micha.evereview.models.Series
 import java.util.*
 
 class ReviewsRepository {

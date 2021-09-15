@@ -1,11 +1,10 @@
 package com.micha.evereview
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.micha.evereview.databinding.ReviewCardBinding
-import com.micha.evereview.reviewitems.ReviewItem
+import com.micha.evereview.models.ReviewItem
 
 class ReviewsAdapter(
     private val reviews: List<Review<out ReviewItem>>

@@ -1,6 +1,6 @@
 package com.micha.evereview
 
-import com.micha.evereview.reviewitems.ReviewItem
+import com.micha.evereview.models.ReviewItem
 import java.util.*
 
 data class Review<T : ReviewItem>(

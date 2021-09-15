@@ -1,4 +1,4 @@
-package com.micha.evereview.reviewitems
+package com.micha.evereview.models
 
 class Series(
     override val title: String,
