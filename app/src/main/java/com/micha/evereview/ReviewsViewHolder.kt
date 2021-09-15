@@ -24,7 +24,12 @@ class ReviewsViewHolder(
 
     fun fill(review: Review<out ReviewItem>) {
         view.title.text = review.item.title
-        view.note.text = review.note
+        if (review.note == null) {
+            view.note.visibility = GONE
+        }
+        else {
+            view.note.text = review.note
+        }
 
         // TODO: Setting icons is stupid because they can be null.
 
