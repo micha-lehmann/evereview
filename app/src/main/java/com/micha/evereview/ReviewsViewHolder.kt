@@ -7,7 +7,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.RecyclerView
-import com.micha.evereview.databinding.InfoElementBinding
+import com.google.android.material.chip.Chip
 import com.micha.evereview.databinding.ReviewCardBinding
 import com.micha.evereview.models.*
 
@@ -20,54 +20,44 @@ class ReviewsViewHolder(
         view.root.context
     }
 
-    private val infos = listOf(view.info1, view.info2, view.info3, view.info4, view.info5)
-
     fun fill(review: Review<out ReviewItem>) {
         view.title.text = review.item.title
-        if (review.note == null) {
-            view.note.visibility = GONE
-        }
-        else {
-            view.note.text = review.note
-        }
 
-        // TODO: Setting icons is stupid because they can be null.
+        if (review.note == null) {view.note.visibility = GONE}
+        else {view.note.text = review.note}
 
-        setNextInfo(
+
+        addInfo(
             context.getString(R.string.rating, review.rating, MAX_RATING),
-            AppCompatResources.getDrawable(context, R.drawable.rating)!!,
-            context.getString(R.string.info_rating)
+            R.drawable.rating
         )
 
         when (review.item) {
             is Movie -> {
-                setNextInfo(
+                addInfo(
                     context.getString(R.string.duration, review.item.duration / 60, review.item.duration % 60),
-                    AppCompatResources.getDrawable(context, R.drawable.duration)!!,
-                    context.getString(R.string.info_duration)
+                    R.drawable.duration
                 )
-                setNextInfo(
+                addInfo(
                     context.getString(R.string.release, review.item.release),
-                    AppCompatResources.getDrawable(context, R.drawable.release)!!,
-                    context.getString(R.string.info_release)
+                    R.drawable.release
                 )
             }
             else -> {
-                Log.w("ReviewsViewHolder", "Received a review with an unknown item type.")
+                Log.w("ReviewsViewHolder (new)", "Received a review with an unknown item type.")
             }
         }
     }
 
-    private fun setNextInfo(text: String, icon: Drawable, iconText: String) {
-        val info = findNextInfo() ?: return
+    private fun addInfo(text: String, icon: Int) {
+        val info = Chip(context)
 
-        info.icon.setImageDrawable(icon)
-        info.icon.contentDescription = iconText
-        info.text.text = text
-        info.root.visibility = VISIBLE // Important, since if tells findNextInfo that this info is used up.
-    }
+        info.setChipIconSizeResource(R.dimen.regular_text)
+        info.iconStartPadding = (24 - info.chipIconSize / context.resources.displayMetrics.density) // 24 is the maximum icon size in a chip
 
-    private fun findNextInfo(): InfoElementBinding? {
-        return infos.find {info -> info.root.visibility == GONE}
+        info.text = text
+        info.setChipIconResource(icon)
+
+        view.infos.addView(info)
     }
 }

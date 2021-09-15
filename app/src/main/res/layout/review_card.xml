@@ -21,58 +21,21 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Title of the Thing" />
 
-        <androidx.constraintlayout.helper.widget.Flow
+        <com.google.android.material.chip.ChipGroup
             android:id="@+id/infos"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small_space"
-            android:orientation="horizontal"
-            app:constraint_referenced_ids="info1,info2,info3,info4,info5"
-            app:flow_horizontalAlign="start"
-            app:flow_horizontalBias="0"
-            app:flow_horizontalGap="@dimen/large_space"
-            app:flow_horizontalStyle="packed"
-            app:flow_verticalGap="@dimen/small_space"
-            app:flow_wrapMode="aligned"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:chipSpacing="@dimen/regular_space">
 
-        <include
-            android:id="@+id/info1"
-            layout="@layout/info_element"
-            android:visibility="gone"
-            tools:visibility="visible" />
-
-        <include
-            android:id="@+id/info2"
-            layout="@layout/info_element"
-            android:visibility="gone"
-            tools:visibility="visible" />
-
-        <include
-            android:id="@+id/info3"
-            layout="@layout/info_element"
-            android:visibility="gone"
-            tools:visibility="visible" />
-
-        <include
-            android:id="@+id/info4"
-            layout="@layout/info_element"
-            android:visibility="gone"
-            tools:visibility="visible" />
-
-        <include
-            android:id="@+id/info5"
-            layout="@layout/info_element"
-            android:visibility="gone"
-            tools:visibility="visible" />
+        </com.google.android.material.chip.ChipGroup>
 
         <TextView
             android:id="@+id/note"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small_space"
             android:textAlignment="textStart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
