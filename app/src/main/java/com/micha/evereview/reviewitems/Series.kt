@@ -1,9 +1,9 @@
 package com.micha.evereview.reviewitems
 
-class Movie(
+class Series(
     override val title: String,
-    var duration: Int,
-    var release: Int
+    var season: Int,
+    var episodes: Int
 ) : ReviewItem() {
-    override val type = "Movie"
+    override val type = "Series"
 }

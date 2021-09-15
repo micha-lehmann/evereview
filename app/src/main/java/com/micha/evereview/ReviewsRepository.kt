@@ -2,6 +2,7 @@ package com.micha.evereview
 
 import com.micha.evereview.reviewitems.Movie
 import com.micha.evereview.reviewitems.ReviewItem
+import com.micha.evereview.reviewitems.Series
 import java.util.*
 
 class ReviewsRepository {
@@ -20,6 +21,12 @@ class ReviewsRepository {
                 3.0,
                 Date(),
                 null
+            ),
+            Review(
+                Series("Agents of SHIELD", 1, 22),
+                8.5,
+                Date(),
+                "Favorite character: Agent Coulson!"
             )
         ))
     }
