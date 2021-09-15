@@ -56,7 +56,28 @@
             android:visibility="gone"
             tools:visibility="visible" />
 
-        </LinearLayout>
+        <include
+            android:id="@+id/info4"
+            layout="@layout/info_element"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <include
+            android:id="@+id/info5"
+            layout="@layout/info_element"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/note"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_space"
+            android:textAlignment="textStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/infos"
+            tools:text="Description of the review of the thing! This might span over multiple lines, who knows, users are weird :)" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
