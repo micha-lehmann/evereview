@@ -9,9 +9,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.RecyclerView
 import com.micha.evereview.databinding.InfoElementBinding
 import com.micha.evereview.databinding.ReviewCardBinding
-import com.micha.evereview.models.Movie
-import com.micha.evereview.models.Review
-import com.micha.evereview.models.ReviewItem
+import com.micha.evereview.models.*
 
 const val MAX_RATING = 10
 
