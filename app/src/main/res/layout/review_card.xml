@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/regular_space"
-    android:layout_marginBottom="@dimen/large_space">
+    android:layout_marginBottom="@dimen/regular_space">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="@dimen/regular_space">
 
         <TextView
             android:id="@+id/title"
