@@ -24,4 +24,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/extra_large_space"
+        android:layout_marginBottom="@dimen/extra_large_space"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toTopOf="@+id/mainMenu"
+        app:layout_constraintEnd_toEndOf="@+id/reviewsContainerView"
+        app:srcCompat="@drawable/add"
+        android:contentDescription="@string/add_review"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
