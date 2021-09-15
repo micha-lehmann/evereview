@@ -3,6 +3,7 @@ package com.micha.evereview
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.micha.evereview.models.Review
 import com.micha.evereview.models.ReviewItem
 
 class ReviewsViewModel(

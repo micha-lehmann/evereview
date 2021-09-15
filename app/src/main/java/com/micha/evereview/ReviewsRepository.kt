@@ -1,6 +1,7 @@
 package com.micha.evereview
 
 import com.micha.evereview.models.Movie
+import com.micha.evereview.models.Review
 import com.micha.evereview.models.ReviewItem
 import com.micha.evereview.models.Series
 import java.util.*

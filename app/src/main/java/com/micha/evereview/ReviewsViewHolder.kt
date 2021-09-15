@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.micha.evereview.databinding.InfoElementBinding
 import com.micha.evereview.databinding.ReviewCardBinding
 import com.micha.evereview.models.Movie
+import com.micha.evereview.models.Review
 import com.micha.evereview.models.ReviewItem
 
 const val MAX_RATING = 10

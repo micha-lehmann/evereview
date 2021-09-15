@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.micha.evereview.databinding.ReviewCardBinding
+import com.micha.evereview.models.Review
 import com.micha.evereview.models.ReviewItem
 
 class ReviewsAdapter(
