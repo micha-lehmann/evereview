@@ -1,32 +1,68 @@
 package com.micha.evereview
 
-import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.RecyclerView
+import com.micha.evereview.databinding.InfoElementBinding
 import com.micha.evereview.databinding.ReviewCardBinding
 import com.micha.evereview.reviewitems.Movie
 import com.micha.evereview.reviewitems.ReviewItem
-import java.text.SimpleDateFormat
+
+const val MAX_RATING = 10
 
 class ReviewsViewHolder(
     private val view: ReviewCardBinding
 ) : RecyclerView.ViewHolder(view.root) {
-    @SuppressLint("SimpleDateFormat")
+    private val context: Context by lazy {
+        view.root.context
+    }
+
+    private val infos = listOf(view.info1, view.info2, view.info3)
+
     fun fill(review: Review<out ReviewItem>) {
-        val context = view.root.context
         view.title.text = review.item.title
-        view.ratingText.text = context.getString(R.string.rating, review.rating, 10) // TODO: Magic Number
 
-        view.duration.visibility = GONE
-        view.release.visibility = GONE
+        // TODO: Setting icons is stupid because they can be null.
 
-        if (review.item is Movie) {
-            view.duration.visibility = VISIBLE
-            view.durationText.text = "${review.item.duration / 60}:${review.item.duration % 60}"
-            view.release.visibility = VISIBLE
-            view.releaseText.text = "${review.item.release}"
+        setNextInfo(
+            context.getString(R.string.rating, review.rating, MAX_RATING),
+            AppCompatResources.getDrawable(context, R.drawable.rating)!!,
+            context.getString(R.string.info_rating)
+        )
+
+        when (review.item) {
+            is Movie -> {
+                setNextInfo(
+                    context.getString(R.string.duration, review.item.duration / 60, review.item.duration % 60),
+                    AppCompatResources.getDrawable(context, R.drawable.duration)!!,
+                    context.getString(R.string.info_duration)
+                )
+                setNextInfo(
+                    context.getString(R.string.release, review.item.release),
+                    AppCompatResources.getDrawable(context, R.drawable.release)!!,
+                    context.getString(R.string.info_release)
+                )
+            }
+            else -> {
+                Log.w("ReviewsViewHolder", "Received a review with an unknown item type.")
+            }
         }
+    }
+
+    private fun setNextInfo(text: String, icon: Drawable, iconText: String) {
+        val info = findNextInfo() ?: return
+
+        info.icon.setImageDrawable(icon)
+        info.icon.contentDescription = iconText
+        info.text.text = text
+        info.root.visibility = VISIBLE // Important, since if tells findNextInfo that this info is used up.
+    }
+
+    private fun findNextInfo(): InfoElementBinding? {
+        return infos.find {info -> info.root.visibility == GONE}
     }
 }
