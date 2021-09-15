@@ -19,6 +19,9 @@
     </plurals>
     <string name="info_rating">Rating</string>
     <string name="info_duration">Duration</string>
-    <string name="info_year">Year</string>
+    <string name="info_release">Year</string>
     <string name="rating">%.1f / %d</string>
+    <string name="duration">%d:%d</string>
+    <string name="release">%d</string>
+    <string name="add_review">Add Review</string>
 </resources>
