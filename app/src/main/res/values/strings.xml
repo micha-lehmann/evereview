@@ -24,4 +24,6 @@
     <string name="duration">%d:%d</string>
     <string name="release">%d</string>
     <string name="add_review">Add Review</string>
+    <string name="reviews">Reviews</string>
+    <string name="review_editor">Review Editor</string>
 </resources>

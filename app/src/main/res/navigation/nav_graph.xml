@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/reviewsFragment">
+
+    <fragment
+        android:id="@+id/reviewsFragment"
+        android:name="com.micha.evereview.reviews.ReviewsFragment"
+        android:label="@string/reviews"
+        tools:layout="@layout/reviews_fragment">
+        <action
+            android:id="@+id/action_reviewsFragment_to_editReview2"
+            app:destination="@id/editReview" />
+    </fragment>
+    <fragment
+        android:id="@+id/editReview"
+        android:name="com.micha.evereview.edit.EditReview"
+        android:label="@string/review_editor"
+        tools:layout="@layout/fragment_edit_review" >
+        <argument
+            android:name="reviewItem"
+            app:argType="com.micha.evereview.models.ReviewItem"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="reviewRating"
+            app:argType="float"
+            android:defaultValue="-1.0" />
+        <argument
+            android:name="reviewTimestamp"
+            app:argType="java.util.Date"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="reviewNote"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+</navigation>
