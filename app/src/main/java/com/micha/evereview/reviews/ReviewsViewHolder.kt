@@ -1,13 +1,11 @@
 package com.micha.evereview.reviews
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.View.GONE
-import android.view.View.VISIBLE
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
+import com.micha.evereview.R
 import com.micha.evereview.databinding.ReviewCardBinding
 import com.micha.evereview.models.*
 
