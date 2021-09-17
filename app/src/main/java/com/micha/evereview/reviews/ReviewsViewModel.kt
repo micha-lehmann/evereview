@@ -1,4 +1,4 @@
-package com.micha.evereview
+package com.micha.evereview.reviews
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

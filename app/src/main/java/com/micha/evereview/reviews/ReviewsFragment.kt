@@ -1,4 +1,4 @@
-package com.micha.evereview
+package com.micha.evereview.reviews
 
 import android.os.Bundle
 import android.util.Log

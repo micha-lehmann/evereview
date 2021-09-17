@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.micha.evereview.databinding.ActivityMainBinding
+import com.micha.evereview.reviews.ReviewsViewModel
 
 class MainActivity : AppCompatActivity() {
     private val layout by lazy {

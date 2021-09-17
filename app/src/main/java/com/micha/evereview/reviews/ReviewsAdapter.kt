@@ -1,4 +1,4 @@
-package com.micha.evereview
+package com.micha.evereview.reviews
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

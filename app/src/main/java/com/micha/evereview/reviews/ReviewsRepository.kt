@@ -1,4 +1,4 @@
-package com.micha.evereview
+package com.micha.evereview.reviews
 
 import com.micha.evereview.models.*
 import java.util.*
