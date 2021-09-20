@@ -1,7 +1,7 @@
 package com.micha.evereview.models
 
-class Movie(
+class Music(
     override val title: String,
-    var duration: Int? = null,
-    var release: Int? = null
+    val artist: String? = null,
+    val musicGenre: String? = null
 ) : ReviewItem()

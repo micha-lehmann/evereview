@@ -21,10 +21,22 @@ class ReviewsRepository {
                 null
             ),
             Review(
-                Series("Agents of SHIELD", 1, 22),
+                Series("Agents of S.H.I.E.L.D.", 1, 22),
                 8.5,
                 Date(),
                 "Favorite character: Agent Coulson!"
+            ),
+            Review(
+                Music("Tendon", "Igorrr", "Crazy Shit"),
+                7.5,
+                Date(),
+                "Completely crazy but actually pretty good. Not easy to listen to though."
+            ),
+            Review(
+                Book("I don't know any books", "Goethe?", "Drama"),
+                0.0,
+                Date(),
+                "Not a book person."
             )
         ))
     }

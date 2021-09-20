@@ -23,6 +23,8 @@
     <string name="rating">%.1f / %d</string>
     <string name="duration">%d:%d</string>
     <string name="release">%d</string>
+    <string name="season">S%d</string>
+    <string name="episodes">%d Eps.</string>
     <string name="add_review">Add Review</string>
     <string name="reviews">Reviews</string>
     <string name="review_editor">Review Editor</string>
