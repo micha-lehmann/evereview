@@ -18,6 +18,11 @@ open class ReviewsViewHolder(
         view.root.context
     }
 
+    open fun clear() {
+        view.title.text = ""
+        view.infos.removeAllViews()
+    }
+
     open fun fill(review: Review<out ReviewItem>) {
         view.title.text = review.item.title
 

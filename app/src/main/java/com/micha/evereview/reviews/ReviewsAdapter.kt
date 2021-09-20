@@ -35,6 +35,7 @@ class ReviewsAdapter(
     }
 
     override fun onBindViewHolder(holder: ReviewsViewHolder, position: Int) {
+        holder.clear()
         holder.fill(reviews[position])
     }
 
