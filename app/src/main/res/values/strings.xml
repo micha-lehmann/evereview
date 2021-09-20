@@ -28,4 +28,12 @@
     <string name="add_review">Add Review</string>
     <string name="reviews">Reviews</string>
     <string name="review_editor">Review Editor</string>
+    <string name="select_category">Select Category</string>
+    <string-array name="review_item_types">
+        <item>Movie</item>
+        <item>Series</item>
+        <item>Music</item>
+        <item>Book</item>
+    </string-array>
+    <string name="save">Save</string>
 </resources>

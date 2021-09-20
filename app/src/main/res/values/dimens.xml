@@ -7,4 +7,7 @@
     <dimen name="small_text">12sp</dimen>
     <dimen name="regular_text">16sp</dimen>
     <dimen name="large_text">20sp</dimen>
+    <dimen name="small_text_box">36sp</dimen>
+    <dimen name="regular_text_box">48sp</dimen>
+    <dimen name="large_text_box">60sp</dimen>
 </resources>
