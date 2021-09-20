@@ -39,4 +39,8 @@ class ReviewsRepository {
     fun getReviews(onSuccess: (reviews: List<Review<out ReviewItem>>) -> Unit) {
         onSuccess(reviews)
     }
+
+    fun getReview(id: Int): Review<out ReviewItem>? {
+        return reviews.find { r -> r.id == id }
+    }
 }
