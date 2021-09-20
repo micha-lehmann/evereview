@@ -1,8 +1,8 @@
 package com.micha.evereview
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.micha.evereview.databinding.ActivityMainBinding
 import com.micha.evereview.reviews.ReviewsViewModel
 
@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(layout.root)
 
         val mainMenu = layout.mainMenu
     }
