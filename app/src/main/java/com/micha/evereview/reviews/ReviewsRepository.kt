@@ -1,8 +1,9 @@
 package com.micha.evereview.reviews
 
 import com.micha.evereview.models.*
+import javax.inject.Inject
 
-class ReviewsRepository {
+class ReviewsRepository @Inject constructor() {
     private val reviews = listOf(
         Review(
             Movie("Avengers", 143, 2012),
