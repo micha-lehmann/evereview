@@ -31,11 +31,11 @@ class EditReviewActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         layout.categorySelect.onItemSelectedListener = this
     }
 
-    fun clearSpecificInputs() {
+    private fun clearSpecificInputs() {
         layout.specificInputs.removeAllViews()
     }
 
-    fun addSpecificInputs(reviewItem: ReviewItem) {
+    private fun addSpecificInputs(reviewItem: ReviewItem) {
         val amount = when (reviewItem) {
             is Movie -> 2
             is Series -> 2
