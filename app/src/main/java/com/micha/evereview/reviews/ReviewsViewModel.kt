@@ -21,4 +21,8 @@ class ReviewsViewModel @Inject constructor() : ViewModel() {
             _reviews.postValue(reviews)
         }
     }
+
+    fun getReview(id: Int): Review<out ReviewItem>? {
+        return repo.getReview(id)
+    }
 }
