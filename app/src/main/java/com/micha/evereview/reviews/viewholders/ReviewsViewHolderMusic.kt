@@ -19,13 +19,13 @@ class ReviewsViewHolderMusic(
 
         if (review.item.artist != null) {
             addInfo(
-                review.item.artist,
+                review.item.artist!!,
                 R.drawable.artist
             )
         }
         if (review.item.musicGenre != null) {
             addInfo(
-                review.item.musicGenre,
+                review.item.musicGenre!!,
                 R.drawable.music_genre
             )
         }

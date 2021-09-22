@@ -19,13 +19,13 @@ class ReviewsViewHolderBook(
 
         if (review.item.author != null) {
             addInfo(
-                review.item.author,
+                review.item.author!!,
                 R.drawable.author
             )
         }
         if (review.item.bookGenre != null) {
             addInfo(
-                review.item.bookGenre,
+                review.item.bookGenre!!,
                 R.drawable.book_genre
             )
         }
