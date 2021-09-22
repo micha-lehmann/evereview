@@ -5,14 +5,26 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.micha.evereview.R
 import com.micha.evereview.databinding.ActivityEditReviewBinding
 import com.micha.evereview.models.*
+import com.micha.evereview.reviews.ReviewsViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class EditReviewActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+@AndroidEntryPoint
+class EditReviewActivity @Inject constructor() : AppCompatActivity(),
+    AdapterView.OnItemSelectedListener {
     private val layout by lazy {
         ActivityEditReviewBinding.inflate(layoutInflater)
+    }
+
+    private val model by viewModels<ReviewsViewModel>()
+
+    private val reviewId by lazy {
+        intent.extras?.getInt("reviewId")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +41,14 @@ class EditReviewActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         }
 
         layout.categorySelect.onItemSelectedListener = this
+
+        Log.i("EditReviewActivity", "reviewId = $reviewId")
+
+        reviewId ?: return
+
+        val review = model.getReview(reviewId!!) ?: return
+
+        addSpecificInputs(review.item)
     }
 
     private fun clearSpecificInputs() {

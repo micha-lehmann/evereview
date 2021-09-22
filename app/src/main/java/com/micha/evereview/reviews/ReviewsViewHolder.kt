@@ -1,11 +1,13 @@
 package com.micha.evereview.reviews
 
 import android.content.Context
+import android.content.Intent
 import android.view.View.GONE
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.micha.evereview.R
 import com.micha.evereview.databinding.ReviewCardBinding
+import com.micha.evereview.edit.EditReviewActivity
 import com.micha.evereview.models.Review
 import com.micha.evereview.models.ReviewItem
 
@@ -36,6 +38,12 @@ open class ReviewsViewHolder(
             context.getString(R.string.rating, review.rating, MAX_RATING),
             R.drawable.rating
         )
+
+        view.root.setOnClickListener {
+            val activity = Intent(context, EditReviewActivity::class.java)
+            activity.putExtra("reviewId", review.id)
+            context.startActivity(activity)
+        }
     }
 
     protected fun addInfo(text: String, icon: Int) {

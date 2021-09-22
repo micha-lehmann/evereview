@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(layout.root)
 
         layout.add.setOnClickListener {
+            // No need to pass extras, because they default to null.
             startActivity(Intent(this, EditReviewActivity::class.java))
         }
 
