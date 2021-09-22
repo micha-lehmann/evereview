@@ -10,14 +10,6 @@ import com.micha.evereview.reviews.viewholders.ReviewsViewHolderMovie
 import com.micha.evereview.reviews.viewholders.ReviewsViewHolderMusic
 import com.micha.evereview.reviews.viewholders.ReviewsViewHolderSeries
 
-enum class ReviewItemType {
-    UNKNOWN,
-    MOVIE,
-    SERIES,
-    MUSIC,
-    BOOK
-}
-
 class ReviewsAdapter(
     private val reviews: List<Review<out ReviewItem>>
 ) : RecyclerView.Adapter<ReviewsViewHolder>() {
