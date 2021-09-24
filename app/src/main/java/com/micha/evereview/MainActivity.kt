@@ -32,6 +32,11 @@ class MainActivity : AppCompatActivity() {
         model.reviews.observe(this) { reviews ->
             layout.reviews.adapter = ReviewsAdapter(reviews)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
         model.loadReviews()
     }
 }
