@@ -1,10 +1,12 @@
 package com.micha.evereview.edit
 
 import android.os.Bundle
+import android.text.InputType.*
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.micha.evereview.R
@@ -26,6 +28,8 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
         intent.extras?.getInt("reviewId")
     }
 
+    private lateinit var review: Review<ReviewItem>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.root)
@@ -43,9 +47,11 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
 
         Log.i("EditReviewActivity", "reviewId = $reviewId")
 
-        reviewId ?: return
+        if (reviewId == null) {
+            return
+        }
 
-        val review = model.getReview(reviewId!!) ?: return
+        review = model.getReview(reviewId!!) as Review<ReviewItem>? ?: return
 
         addSpecificInputs(review.item)
     }
@@ -55,16 +61,32 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
     }
 
     private fun addSpecificInputs(reviewItem: ReviewItem) {
-        val amount = when (reviewItem) {
-            is Movie -> 2
-            is Series -> 2
-            is Music -> 2
-            is Book -> 2
-            else -> 0
+        val inputs: Map<String, Int> = when (reviewItem) {
+            // TODO: These are not localized.
+            is Movie -> mapOf(
+                Pair("Duration", TYPE_CLASS_DATETIME or TYPE_DATETIME_VARIATION_TIME),
+                Pair("Release", TYPE_CLASS_DATETIME or TYPE_DATETIME_VARIATION_DATE)
+            )
+            is Series -> mapOf(
+                Pair("Season", TYPE_CLASS_NUMBER),
+                Pair("Episodes", TYPE_CLASS_NUMBER)
+            )
+            is Music -> mapOf(
+                Pair("Artist", TYPE_CLASS_TEXT),
+                Pair("Genre", TYPE_CLASS_TEXT)
+            )
+            is Book -> mapOf(
+                Pair("Author", TYPE_CLASS_TEXT),
+                Pair("Genre", TYPE_CLASS_TEXT)
+            )
+            else -> mapOf()
         }
 
-        for (i in 1..amount) {
-            Log.i("EditReviewActivity", "Add one input.")
+        for ((label, type) in inputs) {
+            val input = EditText(this)
+            input.inputType = type
+            input.hint = label
+            layout.specificInputs.addView(input)
         }
     }
 
@@ -72,5 +94,5 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
 
     }
 
-    override fun onNothingSelected(p0: AdapterView<*>?) {} /* no-op */
+    override fun onNothingSelected(parent: AdapterView<*>?) {} /* no-op */
 }
