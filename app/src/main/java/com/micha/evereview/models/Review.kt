@@ -3,8 +3,8 @@ package com.micha.evereview.models
 import java.io.Serializable
 
 data class Review<T : ReviewItem>(
-    val item: T,
-    val rating: Double,
-    val note: String?,
-    val id: Int
+    var item: T,
+    var rating: Double,
+    var note: String?,
+    var id: Int
 ) : Serializable
