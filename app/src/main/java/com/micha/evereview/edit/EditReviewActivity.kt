@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.micha.evereview.R
 import com.micha.evereview.databinding.ActivityEditReviewBinding
 import com.micha.evereview.models.*
-import com.micha.evereview.reviews.ReviewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -21,7 +20,7 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
         ActivityEditReviewBinding.inflate(layoutInflater)
     }
 
-    private val model by viewModels<ReviewsViewModel>()
+    private val model by viewModels<EditReviewViewModel>()
 
     private val reviewId by lazy {
         intent.extras?.getInt("reviewId")
