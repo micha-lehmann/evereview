@@ -17,19 +17,21 @@ class ReviewsViewHolderMovie(
             return
         }
 
-        if (review.item.duration != null) {
+        val item: Movie = review.item as Movie
+
+        if (item.duration != null) {
             addInfo(
                 context.getString(
                     R.string.duration,
-                    review.item.duration!! / 60,
-                    review.item.duration!! % 60
+                    item.duration!! / 60,
+                    item.duration!! % 60
                 ),
                 R.drawable.duration
             )
         }
-        if (review.item.duration != null) {
+        if (item.release != null) {
             addInfo(
-                context.getString(R.string.release, review.item.release!!),
+                context.getString(R.string.release, item.release!!),
                 R.drawable.release
             )
         }

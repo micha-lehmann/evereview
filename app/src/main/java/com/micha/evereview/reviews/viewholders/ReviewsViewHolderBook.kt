@@ -16,16 +16,17 @@ class ReviewsViewHolderBook(
         if (review.item !is Book) {
             return
         }
+        val item: Book = review.item as Book
 
-        if (review.item.author != null) {
+        if (item.author != null) {
             addInfo(
-                review.item.author!!,
+                item.author!!,
                 R.drawable.author
             )
         }
-        if (review.item.bookGenre != null) {
+        if (item.bookGenre != null) {
             addInfo(
-                review.item.bookGenre!!,
+                item.bookGenre!!,
                 R.drawable.book_genre
             )
         }

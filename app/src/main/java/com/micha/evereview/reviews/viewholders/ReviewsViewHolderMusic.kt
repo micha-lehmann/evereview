@@ -17,15 +17,17 @@ class ReviewsViewHolderMusic(
             return
         }
 
-        if (review.item.artist != null) {
+        val item: Music = review.item as Music
+
+        if (item.artist != null) {
             addInfo(
-                review.item.artist!!,
+                item.artist!!,
                 R.drawable.artist
             )
         }
-        if (review.item.musicGenre != null) {
+        if (item.musicGenre != null) {
             addInfo(
-                review.item.musicGenre!!,
+                item.musicGenre!!,
                 R.drawable.music_genre
             )
         }

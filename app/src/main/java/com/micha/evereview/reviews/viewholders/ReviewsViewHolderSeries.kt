@@ -17,12 +17,14 @@ class ReviewsViewHolderSeries(
             return
         }
 
+        val item: Series = review.item as Series
+
         addInfo(
-            context.getString(R.string.season, review.item.season),
+            context.getString(R.string.season, item.season),
             R.drawable.season
         )
         addInfo(
-            context.getString(R.string.episodes, review.item.episodes),
+            context.getString(R.string.episodes, item.episodes),
             R.drawable.episodes
         )
     }
