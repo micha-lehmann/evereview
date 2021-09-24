@@ -45,6 +45,11 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
 
         layout.categorySelect.onItemSelectedListener = this
 
+        layout.saveButton.setOnClickListener {
+            save()
+            finish()
+        }
+
         Log.i("EditReviewActivity", "reviewId = $reviewId")
 
         if (reviewId == null) {
@@ -54,6 +59,12 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
         review = model.getReview(reviewId!!) as Review<ReviewItem>? ?: return
 
         addSpecificInputs(review.item)
+    }
+
+    private fun save() {
+        model.editReview(review)
+
+        // TODO: What happens when a new review should be added?
     }
 
     private fun clearSpecificInputs() {
@@ -91,7 +102,16 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
     }
 
     override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+        if (!::review.isInitialized) {
+            return
+        }
 
+        when (pos) {
+            0 -> review.item = Movie(review.item.title)
+            1 -> review.item = Series(review.item.title)
+            2 -> review.item = Music(review.item.title)
+            3 -> review.item = Book(review.item.title)
+        }
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {} /* no-op */
