@@ -4,7 +4,7 @@ import com.micha.evereview.models.*
 import javax.inject.Inject
 
 class ReviewsRepository @Inject constructor() {
-    private val reviews = listOf(
+    private val reviews = mutableListOf(
         Review(
             Movie("Avengers", 143, 2012),
             7.5,
@@ -73,5 +73,30 @@ class ReviewsRepository @Inject constructor() {
 
     fun getReview(id: Int): Review<out ReviewItem>? {
         return reviews.find { r -> r.id == id }
+    }
+
+    fun updateReview(review: Review<out ReviewItem>): Boolean {
+        val index = reviews.indexOf(review)
+
+        if (index == -1) {
+            return false
+        }
+
+        reviews[index] = review
+
+        return true
+    }
+
+    fun addReview(review: Review<out ReviewItem>) {
+        reviews.add(Review(review.item, review.rating, review.note, Id.next()))
+    }
+
+    class Id {
+        companion object {
+            private var nextId: Int = 0
+            fun next(): Int {
+                return ++nextId
+            }
+        }
     }
 }
