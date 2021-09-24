@@ -43,7 +43,8 @@
         app:layout_constraintTop_toBottomOf="@id/categorySelect"
         app:tickVisible="false" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:id="@+id/specificInputs"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
