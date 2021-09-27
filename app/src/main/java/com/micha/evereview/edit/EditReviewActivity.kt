@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.children
 import com.micha.evereview.R
 import com.micha.evereview.SliderValueChangeWatcher
 import com.micha.evereview.TextChangeWatcher
@@ -16,6 +17,7 @@ import com.micha.evereview.models.*
 import com.micha.evereview.reviews.ReviewItemType.*
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+import kotlin.math.pow
 
 @AndroidEntryPoint
 class EditReviewActivity @Inject constructor() : AppCompatActivity(),
@@ -75,6 +77,30 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
     }
 
     private fun save() {
+        val inputs = layout.specificInputs.children
+            .map { v -> v as EditText }
+            .map { e -> e.text.toString() }
+            .toList()
+
+        when (val item = review.item) {
+            is Movie -> {
+                item.duration = durationToMinutes(inputs[0])
+                item.release = inputs[1].toIntOrNull()
+            }
+            is Series -> {
+                item.season = inputs[0].toIntOrNull()
+                item.episodes = inputs[1].toIntOrNull()
+            }
+            is Music -> {
+                item.artist = inputs[0]
+                item.musicGenre = inputs[1]
+            }
+            is Book -> {
+                item.author = inputs[0]
+                item.bookGenre = inputs[1]
+            }
+        }
+
         if (newReview) {
             model.addReview(review)
         } else {
@@ -141,4 +167,15 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {} /* no-op */
+
+    private fun durationToMinutes(duration: String): Int { // jank
+        var result = 0
+        val components = duration.split(':')
+        for (i in components.indices) {
+            result += (components[i].toIntOrNull()
+                ?: 0) * 60.0.pow(components.size - i.toDouble() - 1).toInt()
+        }
+
+        return result
+    }
 }
