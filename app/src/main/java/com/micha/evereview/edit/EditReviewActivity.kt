@@ -110,6 +110,9 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
             2 -> review.item = Music(review.item.title)
             3 -> review.item = Book(review.item.title)
         }
+
+        clearSpecificInputs()
+        addSpecificInputs(review.item)
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {} /* no-op */
