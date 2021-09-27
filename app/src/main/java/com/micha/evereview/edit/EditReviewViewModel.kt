@@ -13,7 +13,7 @@ class EditReviewViewModel @Inject constructor() : ViewModel() {
     lateinit var repo: ReviewsRepository
 
     fun getReview(id: Int): Review<out ReviewItem>? {
-        return repo.getReview(id)
+        return repo.getReview(id)?.copy()
     }
 
     fun editReview(review: Review<out ReviewItem>) {
