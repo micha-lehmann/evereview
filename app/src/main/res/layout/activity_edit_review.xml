@@ -18,6 +18,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/regular_space"
+        android:hint="@string/info_title"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@id/categorySelect"
+        app:layout_constraintStart_toStartOf="@id/categorySelect"
+        app:layout_constraintTop_toBottomOf="@id/categorySelect" />
+
     <TextView
         android:id="@+id/ratingLabel"
         android:layout_width="wrap_content"
@@ -40,7 +52,7 @@
         android:valueTo="10.0"
         app:layout_constraintEnd_toEndOf="@id/categorySelect"
         app:layout_constraintStart_toEndOf="@id/ratingLabel"
-        app:layout_constraintTop_toBottomOf="@id/categorySelect"
+        app:layout_constraintTop_toBottomOf="@id/title"
         app:tickVisible="false" />
 
     <LinearLayout

@@ -17,6 +17,7 @@
         <item quantity="one">%d Book</item>
         <item quantity="other">%d Books</item>
     </plurals>
+    <string name="info_title">Title</string>
     <string name="info_rating">Rating</string>
     <string name="info_duration">Duration</string>
     <string name="info_release">Year</string>
