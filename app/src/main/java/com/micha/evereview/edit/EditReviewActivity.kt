@@ -71,7 +71,12 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
     }
 
     private fun save() {
-        model.editReview(review)
+        if (newReview) {
+            model.addReview(review)
+        } else {
+            model.editReview(review)
+        }
+    }
 
     private fun setCategorySelect(reviewItem: ReviewItem) {
         val pos = when (reviewItem) {
