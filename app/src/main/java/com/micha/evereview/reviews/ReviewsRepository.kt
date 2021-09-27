@@ -76,7 +76,7 @@ class ReviewsRepository @Inject constructor() {
     }
 
     fun updateReview(review: Review<out ReviewItem>): Boolean {
-        val index = reviews.indexOf(review)
+        val index = reviews.indexOfFirst { r -> r.id == review.id }
 
         if (index == -1) {
             return false
