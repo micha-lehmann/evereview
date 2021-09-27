@@ -1,14 +1,16 @@
 package com.micha.evereview.edit
 
 import android.os.Bundle
+import android.text.Editable
 import android.text.InputType.*
-import android.util.Log
+import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.slider.Slider
 import com.micha.evereview.R
 import com.micha.evereview.databinding.ActivityEditReviewBinding
 import com.micha.evereview.models.*
@@ -17,7 +19,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class EditReviewActivity @Inject constructor() : AppCompatActivity(),
-    AdapterView.OnItemSelectedListener {
+    AdapterView.OnItemSelectedListener, Slider.OnChangeListener, TextWatcher {
     private val layout by lazy {
         ActivityEditReviewBinding.inflate(layoutInflater)
     }
@@ -46,12 +48,14 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
 
         layout.categorySelect.onItemSelectedListener = this
 
+        layout.title.addTextChangedListener(this)
+
+        layout.rating.addOnChangeListener(this)
+
         layout.saveButton.setOnClickListener {
             save()
             finish()
         }
-
-        Log.i("EditReviewActivity", "reviewId = $reviewId")
 
         if (reviewId == null) {
             newReview = true
@@ -118,4 +122,16 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {} /* no-op */
+
+    override fun onValueChange(slider: Slider, value: Float, fromUser: Boolean) {
+        review.rating = value.toDouble()
+    }
+
+    override fun beforeTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+    override fun onTextChanged(text: CharSequence, start: Int, before: Int, count: Int) {
+        review.item.title = text.toString()
+    }
+
+    override fun afterTextChanged(p0: Editable?) {}
 }
