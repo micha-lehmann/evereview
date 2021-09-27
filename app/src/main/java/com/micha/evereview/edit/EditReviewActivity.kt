@@ -125,36 +125,50 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
     }
 
     private fun addSpecificInputs(reviewItem: ReviewItem) {
-        val inputs: Map<String, Int> = when (reviewItem) {
+        // TODO: This makes my brain hurt.
+        val inputs: Map<String, Pair<Int, Any?>> = when (reviewItem) {
             // TODO: These are not localized.
             is Movie -> mapOf(
-                Pair("Duration", TYPE_CLASS_DATETIME or TYPE_DATETIME_VARIATION_TIME),
-                Pair("Release", TYPE_CLASS_DATETIME or TYPE_DATETIME_VARIATION_DATE)
+                Pair(
+                    "Duration", Pair(
+                        TYPE_CLASS_DATETIME or TYPE_DATETIME_VARIATION_TIME,
+                        reviewItem.duration
+                    )
+                ),
+                Pair(
+                    "Release", Pair(
+                        TYPE_CLASS_DATETIME or TYPE_DATETIME_VARIATION_DATE,
+                        reviewItem.release
+                    )
+                )
             )
             is Series -> mapOf(
-                Pair("Season", TYPE_CLASS_NUMBER),
-                Pair("Episodes", TYPE_CLASS_NUMBER)
+                Pair("Season", Pair(TYPE_CLASS_NUMBER, reviewItem.season)),
+                Pair("Episodes", Pair(TYPE_CLASS_NUMBER, reviewItem.episodes))
             )
             is Music -> mapOf(
-                Pair("Artist", TYPE_CLASS_TEXT),
-                Pair("Genre", TYPE_CLASS_TEXT)
+                Pair("Artist", Pair(TYPE_CLASS_TEXT, reviewItem.artist)),
+                Pair("Genre", Pair(TYPE_CLASS_TEXT, reviewItem.musicGenre))
             )
             is Book -> mapOf(
-                Pair("Author", TYPE_CLASS_TEXT),
-                Pair("Genre", TYPE_CLASS_TEXT)
+                Pair("Author", Pair(TYPE_CLASS_TEXT, reviewItem.author)),
+                Pair("Genre", Pair(TYPE_CLASS_TEXT, reviewItem.bookGenre))
             )
             else -> mapOf()
         }
 
-        for ((label, type) in inputs) {
+        for ((label, info) in inputs) {
+            val (type, default) = info
             val input = EditText(this)
             input.inputType = type
             input.hint = label
+            input.setText(default.toString())
             layout.specificInputs.addView(input)
         }
     }
 
     override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+        // TODO: This clears all members except the title.
         when (pos + 1) {
             MOVIE.ordinal -> review.item = Movie(review.item.title)
             SERIES.ordinal -> review.item = Series(review.item.title)
