@@ -14,6 +14,7 @@ import com.google.android.material.slider.Slider
 import com.micha.evereview.R
 import com.micha.evereview.databinding.ActivityEditReviewBinding
 import com.micha.evereview.models.*
+import com.micha.evereview.reviews.ReviewItemType.*
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -64,7 +65,7 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
             review = model.getReview(reviewId!!) as Review<ReviewItem>? ?: return
         }
 
-        addSpecificInputs(review.item)
+        setCategorySelect(review.item) // Calls addSpecificInputs through onItemSelected.
 
         layout.rating.value = review.rating.toFloat()
     }
@@ -72,7 +73,16 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
     private fun save() {
         model.editReview(review)
 
-        // TODO: What happens when a new review should be added?
+    private fun setCategorySelect(reviewItem: ReviewItem) {
+        val pos = when (reviewItem) {
+            is Movie -> MOVIE.ordinal
+            is Series -> SERIES.ordinal
+            is Music -> MUSIC.ordinal
+            is Book -> BOOK.ordinal
+            else -> UNKNOWN.ordinal
+        }
+
+        layout.categorySelect.setSelection(pos - 1)
     }
 
     private fun clearSpecificInputs() {
@@ -110,11 +120,11 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
     }
 
     override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
-        when (pos) {
-            0 -> review.item = Movie(review.item.title)
-            1 -> review.item = Series(review.item.title)
-            2 -> review.item = Music(review.item.title)
-            3 -> review.item = Book(review.item.title)
+        when (pos + 1) {
+            MOVIE.ordinal -> review.item = Movie(review.item.title)
+            SERIES.ordinal -> review.item = Series(review.item.title)
+            MUSIC.ordinal -> review.item = Music(review.item.title)
+            BOOK.ordinal -> review.item = Book(review.item.title)
         }
 
         clearSpecificInputs()
