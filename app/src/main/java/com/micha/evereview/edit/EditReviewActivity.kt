@@ -61,6 +61,8 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
         }
 
         addSpecificInputs(review.item)
+
+        layout.rating.value = review.rating.toFloat()
     }
 
     private fun save() {
