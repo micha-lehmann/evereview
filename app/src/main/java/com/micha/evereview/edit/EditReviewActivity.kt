@@ -1,17 +1,16 @@
 package com.micha.evereview.edit
 
 import android.os.Bundle
-import android.text.Editable
 import android.text.InputType.*
-import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.slider.Slider
 import com.micha.evereview.R
+import com.micha.evereview.SliderValueChangeWatcher
+import com.micha.evereview.TextChangeWatcher
 import com.micha.evereview.databinding.ActivityEditReviewBinding
 import com.micha.evereview.models.*
 import com.micha.evereview.reviews.ReviewItemType.*
@@ -20,7 +19,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class EditReviewActivity @Inject constructor() : AppCompatActivity(),
-    AdapterView.OnItemSelectedListener, Slider.OnChangeListener, TextWatcher {
+    AdapterView.OnItemSelectedListener {
     private val layout by lazy {
         ActivityEditReviewBinding.inflate(layoutInflater)
     }
@@ -49,9 +48,13 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
 
         layout.categorySelect.onItemSelectedListener = this
 
-        layout.title.addTextChangedListener(this)
+        layout.title.addTextChangedListener(TextChangeWatcher { text ->
+            review.item.title = text
+        })
 
-        layout.rating.addOnChangeListener(this)
+        layout.rating.addOnChangeListener(SliderValueChangeWatcher { value ->
+            review.rating = value.toDouble()
+        })
 
         layout.saveButton.setOnClickListener {
             save()
@@ -138,16 +141,4 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {} /* no-op */
-
-    override fun onValueChange(slider: Slider, value: Float, fromUser: Boolean) {
-        review.rating = value.toDouble()
-    }
-
-    override fun beforeTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-    override fun onTextChanged(text: CharSequence, start: Int, before: Int, count: Int) {
-        review.item.title = text.toString()
-    }
-
-    override fun afterTextChanged(p0: Editable?) {}
 }
