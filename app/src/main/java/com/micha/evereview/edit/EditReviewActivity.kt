@@ -62,6 +62,7 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
             newReview = true
             review = Review(Movie(""), 0.0, null, 0)
         } else {
+            @Suppress("UNCHECKED_CAST")
             review = model.getReview(reviewId!!) as Review<ReviewItem>? ?: return
         }
 
