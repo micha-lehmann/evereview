@@ -29,6 +29,7 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
     }
 
     private lateinit var review: Review<ReviewItem>
+    private var newReview = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,10 +54,11 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
         Log.i("EditReviewActivity", "reviewId = $reviewId")
 
         if (reviewId == null) {
-            return
+            newReview = true
+            review = Review(Movie(""), 0.0, null, 0)
+        } else {
+            review = model.getReview(reviewId!!) as Review<ReviewItem>? ?: return
         }
-
-        review = model.getReview(reviewId!!) as Review<ReviewItem>? ?: return
 
         addSpecificInputs(review.item)
     }
@@ -102,10 +104,6 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
     }
 
     override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
-        if (!::review.isInitialized) {
-            return
-        }
-
         when (pos) {
             0 -> review.item = Movie(review.item.title)
             1 -> review.item = Series(review.item.title)
