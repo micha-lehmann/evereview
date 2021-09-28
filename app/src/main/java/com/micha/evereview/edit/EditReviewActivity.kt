@@ -73,6 +73,8 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
 
         setCategorySelect(review.item) // Calls addSpecificInputs through onItemSelected.
 
+        layout.title.setText(review.item.title)
+
         layout.rating.value = review.rating.toFloat()
     }
 
