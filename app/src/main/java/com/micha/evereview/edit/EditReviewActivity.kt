@@ -170,13 +170,14 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
     }
 
     override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
-        // TODO: This clears all members except the title.
+        val extras = review.item.getExtras()
         when (pos + 1) {
             MOVIE.ordinal -> review.item = Movie(review.item.title)
             SERIES.ordinal -> review.item = Series(review.item.title)
             MUSIC.ordinal -> review.item = Music(review.item.title)
             BOOK.ordinal -> review.item = Book(review.item.title)
         }
+        review.item.setExtras(extras)
 
         clearSpecificInputs()
         addSpecificInputs(review.item)
