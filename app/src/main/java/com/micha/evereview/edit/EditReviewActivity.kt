@@ -60,6 +60,8 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
 
         layout.rating.value = review.rating.toFloat()
 
+        layout.note.setText(review.note ?: "")
+
         layout.categorySelect.onItemSelectedListener = this
 
         layout.title.addTextChangedListener(TextChangeWatcher { text ->
@@ -68,6 +70,10 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
 
         layout.rating.addOnChangeListener(SliderValueChangeWatcher { value ->
             review.rating = value.toDouble()
+        })
+
+        layout.note.addTextChangedListener(TextChangeWatcher { text ->
+            review.note = text
         })
 
         layout.saveButton.setOnClickListener {

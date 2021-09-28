@@ -65,6 +65,18 @@
         app:layout_constraintStart_toStartOf="@id/categorySelect"
         app:layout_constraintTop_toBottomOf="@id/rating" />
 
+    <EditText
+        android:id="@+id/note"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/regular_space"
+        android:hint="@string/info_note"
+        android:importantForAutofill="no"
+        android:inputType="textLongMessage"
+        app:layout_constraintEnd_toEndOf="@id/categorySelect"
+        app:layout_constraintStart_toStartOf="@id/categorySelect"
+        app:layout_constraintTop_toBottomOf="@id/specificInputs" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"
