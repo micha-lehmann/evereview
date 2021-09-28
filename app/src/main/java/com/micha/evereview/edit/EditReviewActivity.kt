@@ -48,6 +48,18 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
             layout.categorySelect.adapter = adapter
         }
 
+        if (reviewId == null) {
+            newReview = true
+            review = Review(Movie(""), 0.0, null, 0)
+        } else {
+            @Suppress("UNCHECKED_CAST")
+            review = model.getReview(reviewId!!) as Review<ReviewItem>? ?: return
+        }
+
+        layout.title.setText(review.item.title)
+
+        layout.rating.value = review.rating.toFloat()
+
         layout.categorySelect.onItemSelectedListener = this
 
         layout.title.addTextChangedListener(TextChangeWatcher { text ->
@@ -63,19 +75,7 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
             finish()
         }
 
-        if (reviewId == null) {
-            newReview = true
-            review = Review(Movie(""), 0.0, null, 0)
-        } else {
-            @Suppress("UNCHECKED_CAST")
-            review = model.getReview(reviewId!!) as Review<ReviewItem>? ?: return
-        }
-
         setCategorySelect(review.item) // Calls addSpecificInputs through onItemSelected.
-
-        layout.title.setText(review.item.title)
-
-        layout.rating.value = review.rating.toFloat()
     }
 
     private fun save() {
