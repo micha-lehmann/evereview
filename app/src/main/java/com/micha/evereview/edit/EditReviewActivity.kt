@@ -164,7 +164,7 @@ class EditReviewActivity @Inject constructor() : AppCompatActivity(),
             val input = EditText(this)
             input.inputType = type
             input.hint = label
-            input.setText(default.toString())
+            input.setText((default ?: "").toString())
             layout.specificInputs.addView(input)
         }
     }
